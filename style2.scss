@@ -1,0 +1,243 @@
+$darkColor:#223;
+$mainMaterialColor:#333333;
+$mainSize:500px;
+$inerSize:0.9 * $mainSize;
+$inerRadius:$inerSize / 2;
+$dashW:0.03 * $mainSize;
+$dashH:0.005 * $mainSize;
+
+
+@mixin center{
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    margin: auto;
+}
+
+@mixin round{
+    border-radius: 100%;
+}
+
+
+body{
+    background-color: $darkColor;
+}
+
+.watch{
+    width: $mainSize;
+    height: $mainSize;
+    // background-color: $mainMaterialColor;
+    
+
+    @include center;
+    @include round;
+
+
+}
+
+.background-watch{
+    width: 480px;
+    height: 480px;
+    @include center;
+    @include round;
+    z-index: -1;
+    background-color: aqua;
+
+    animation: row 9s infinite linear;
+    transition: 0.8s;
+    background: linear-gradient(blue,red, yellow,brown,blue,red,yellow,brown);
+
+}
+@keyframes row{
+    from{transform: none;}
+    to{transform: rotate(360deg);}
+}
+
+.screen{
+    width: $inerSize;
+    height: $inerSize;
+    background-color: darken($mainMaterialColor,12%);
+
+    @include center;
+    @include round;
+    // background: linear-gradient(red,blue,red);
+    background: radial-gradient(red 15%,blue 35%,red,);
+}
+
+.dash{
+    width: $dashW;
+    height: $dashH;
+    background-color: lighten($mainMaterialColor,22%);
+
+    @include center;
+    margin-right: $dashW;
+
+    transform-origin: -$inerRadius + 2 * $dashW 0;
+
+    @for $n from 1 through 60{
+        &:nth-child(#{$n}){
+            transform: rotate(($n - 1) * 6deg);
+
+            @if ($n - 1) % 5==0{
+                background-color: red;
+            }
+        }
+    }
+}
+
+.time12{
+    position:absolute;
+    color: white;
+    font-size: 40px;
+    top:60px;
+    left: 230px;
+}
+
+.time1{
+    position: absolute;
+    color: white;
+    font-size: 40px;
+    top:80px;
+    left: 330px;
+}
+
+.time2{
+    position: absolute;
+    color: white;
+    font-size: 40px;
+    top:140px;
+    right: 85px;
+}
+
+.time3{
+    position: absolute;
+    color: white;
+    font-size: 40px;
+    top:230px;
+    right: 60px;
+}
+
+.time4{
+    position: absolute;
+    color: white;
+    font-size: 40px;
+    bottom:140px;
+    right: 90px;
+}
+
+.time5{
+    position: absolute;
+    color: white;
+    font-size: 40px;
+    bottom:80px;
+    right: 150px;
+}
+
+.time6{
+    position: absolute;
+    color: white;
+    font-size: 40px;
+    bottom:60px;
+    right: 240px;
+}
+
+.time7{
+    position: absolute;
+    color: white;
+    font-size: 40px;
+    bottom:80px;
+    left: 150px;
+}
+
+.time8{
+    position: absolute;
+    color: white;
+    font-size: 40px;
+    bottom:140px;
+    left: 90px;
+}
+.time9{
+    position: absolute;
+    color: white;
+    font-size: 40px;
+    top:230px;
+    left: 65px;
+}
+
+.time10{
+    position: absolute;
+    color: white;
+    font-size: 40px;
+    top:140px;
+    left: 85px;
+}
+
+.time11{
+    position: absolute;
+    color: white;
+    font-size: 40px;
+    top:80px;
+    left:150px;
+}
+
+
+.center{
+    width: 70px;
+    height: 70px;
+    background-color: black;
+    border-radius: 100%;
+    // position: absolute;
+    @include center;
+}
+
+
+
+.line1{
+    width: 2px;
+    height: 180px;
+    background-color: rgb(8, 171, 240);
+    @include center;
+    border: 1px solid white;
+    transform:translateY(-60px);rotate:(80deg);
+}
+
+.line2{
+    width: 2px;
+    height: 140px;
+    background-color: rgb(20, 240, 8);
+    @include center;
+    border: 1px solid white;
+    transform:translateY(-40px);rotate:(300deg);
+}
+
+
+
+.line3{
+    width: 2px;
+    height: 180px;
+    background-color: rgb(248, 6, 6);
+    @include center;
+    border: 1px solid white;
+    transform:translateY(-60px);
+
+    animation: tick-tock 60s steps(60,end) infinite;
+    // animation: line 60s infinite linear;
+}
+.linia3{
+    // animation-delay: 3s;
+}
+
+@keyframes tick-tock {
+    from{
+        transform: translateY(0deg);rotate:(0deg);
+    }
+    to {
+      transform: translateY(0deg);rotate:(360deg);
+    }
+  }
+// @keyframes line{
+//    from{transform:translateY(0deg); rotate:(0deg);}
+//     to{transform:translateY(0deg); rotate:(360deg);}
+// }
